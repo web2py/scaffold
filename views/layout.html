@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link href="{{=URL('static','css/stupid.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{=URL('static','css/custom.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{=URL('static','css/calendar.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{=URL('static','css/web2py.css')}}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    {{include "web2py_ajax.html"}}
+  </head>
+  <body class="black">   
+    {{if response.flash:}}
+    <div class="w2p_flash">
+      {{=response.flash}}
+    </div>
+    {{pass}}    
+    <header class="black padded">      
+      <div class="container middle max900">
+        <div class="fill middle">                    
+          <label class="ham padded fa fa-bars" for="menu"></label>
+          <div class="burger accordion">
+            <input type="checkbox" id="menu"/>
+            {{=MENU(response.menu,_class='menu')}}
+            <ul class="menu right">
+              <li>
+                {{=auth.navbar(mode='dropdown')}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="white">
+      {{include}}
+    </main>
+    <footer class="black">
+      <div class="silver center padded social">
+        <a class="fa fa-facebook" href="https://www.facebook.com/sharer/sharer.php?u={url}"></a>
+        <a class="fa fa-twitter" href="https://twitter.com/home?status={url}"></a>
+        <a class="fa fa-google" href="https://plus.google.com/share?url={url}"></a>
+      </div>
+      <div class="container padded max900">
+        <div class="fill">
+          Copyright @ 2016
+        </div>
+      </div>
+    </footer>
+  </body>  
+  <script src="{{=URL('static','js/sugar.min.js')}}"></script>
+  <script src="{{=URL('static','js/marked.min.js')}}"></script>
+  <script src="{{=URL('static','js/vue.min.js')}}"></script>
+  {{block bottomjs}}{{end}}
+  <script>
+    jQuery('.social a').each(function(){var t=jQuery(this); t.attr('href',t.attr('href').replace('{url}',encodeURIComponent(window.location.href)));});
+  </script>
+</html>

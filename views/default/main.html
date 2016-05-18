@@ -1,0 +1,24 @@
+{{extend 'layout.html'}}
+
+<div id="vue">
+  <div class="container max900">
+    <div class="fill">
+      <div class="padded">
+        <input v-model="keywords" placeholder="type some common words like 'good' or 'one'"/>
+      </div>      
+    </div>
+    <div class="fill">
+      <div class="padded" v-for="doc in docs">
+        <div class="lifted padded">
+          <h5>${doc.title}</h5>
+          <p>${doc.body}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{block bottomjs}}
+<script>{{=ASSIGNJS(BASE='/'+request.application+'/')}}</script>
+<script src="{{=URL('static','js/main-vue.js')}}"><script>
+{{end}}
